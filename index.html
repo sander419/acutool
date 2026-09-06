@@ -449,6 +449,23 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--panel2)}
 .toast .th{font-family:var(--fm);font-size:12px;color:var(--red);letter-spacing:.1em;margin-bottom:6px;display:flex;gap:8px;align-items:center}
 .toast.good .th{color:var(--acc)}
 .toast p{font-size:13px;color:var(--mut)}
+
+/* мобильные: элементы грид-контейнеров по умолчанию не сжимаются уже
+   своего содержимого (min-width:auto), из-за чего широкая таблица
+   и панель анализатора растягивали всю страницу вбок на телефоне */
+.hero-grid>*,.vs-grid>*,.prob-grid>*,.hist-grid>*,.pipe>*,.analyzer>*,
+.inst-grid>*,.dash-grid>*,.gauges>*,.mvp-grid>*,.rm>*,.roi-panel>*,
+.part-flow>*,.part-grid>*,.part-grid>div>*,.mkt-grid>*,.price-row>*,
+.leg-grid>*,.mrow>*{min-width:0}
+.tbl-wrap{max-width:100%}
+@media(max-width:600px){
+  .sens-wrap{flex-wrap:wrap}
+  .sens-wrap input{flex:1 1 100%}
+  #sensVal{min-width:0;text-align:left}
+  .an-left,.an-right,.dash-card{padding:18px}
+  .vs-col{padding:20px}
+  .ev{grid-template-columns:62px 1fr;gap:10px}
+}
 </style>
 </head>
 <body>
