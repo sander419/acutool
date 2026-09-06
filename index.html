@@ -438,26 +438,6 @@ td.dim{color:var(--mut)}
 .leg.chk li::before{content:"!";position:absolute;left:2px;color:var(--amb);font-weight:700}
 .legal-disc{margin-top:26px;padding:18px 22px;border:1px dashed var(--line2);border-radius:12px;color:var(--mut);font-size:13.5px;font-family:var(--fm)}
 
-/* demo */
-#demo .panel{padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:50px;position:relative}
-@media(max-width:960px){#demo .panel{grid-template-columns:1fr;padding:32px}}
-.demo-left h2{font-size:clamp(24px,3vw,36px);margin-bottom:18px}
-.demo-left p{color:var(--mut);margin-bottom:14px}
-.demo-left .mono-line{font-family:var(--fm);font-size:12.5px;color:var(--acc);letter-spacing:.08em}
-.f-row{margin-bottom:16px}
-.f-row label{display:block;font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
-.f-row input,.f-row select{width:100%;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;color:var(--txt);padding:13px 16px;font-family:var(--fb);font-size:14.5px;transition:border-color .2s,box-shadow .2s;outline:none}
-.f-row input:focus,.f-row select:focus{border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-dim)}
-.f-row input.err{border-color:var(--red)}
-#formOk{display:none;text-align:center;padding:40px 10px}
-#formOk.on{display:block}
-#formOk svg{width:74px;height:74px;margin:0 auto 22px;display:block}
-#formOk circle{stroke:var(--acc);stroke-dasharray:220;stroke-dashoffset:220;animation:draw 1s ease forwards}
-#formOk path{stroke:var(--acc);stroke-dasharray:60;stroke-dashoffset:60;animation:draw .7s .5s ease forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-#formOk h3{font-size:20px;margin-bottom:10px}
-#formOk p{color:var(--mut)}
-#okNum{color:var(--acc);font-family:var(--fm)}
 
 footer{border-top:1px solid var(--line);padding:44px 0;background:var(--panel2)}
 .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;color:var(--mut);font-size:13px}
@@ -492,7 +472,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--panel2)}
       <a href="#legal">Патенты</a>
     </nav>
     <button id="burger" type="button">МЕНЮ ▾</button>
-    <a href="#demo" class="btn btn-solid btn-sm nav-cta">Обсудить проект</a>
   </div>
 </header>
 
@@ -934,34 +913,6 @@ footer{border-top:1px solid var(--line);padding:44px 0;background:var(--panel2)}
     <div class="legal-disc rv">⚖ Риск ложного срабатывания (остановка станка во время чистового прохода) снимается пользовательским соглашением: «система носит рекомендательный характер». Финальное слово — за оператором.</div>
   </div>
 </section>
-
-<!-- DEMO -->
-<section id="demo">
-  <div class="wrap">
-    <div class="panel rv">
-      <div class="demo-left">
-        <div class="sec-tag">15 · Следующий шаг</div>
-        <h2>Обсудим проект за чашкой кофе</h2>
-        <p>Приезжаем с демо-стендом: показываем спектр вживую, считаем экономику под ваш случай, обсуждаем формат участия — партнёрство, инвестиция в партию или пилот на вашем производстве.</p>
-        <p class="mono-line">TELEGRAM: @acutul_demo · ОТВЕТ В ТЕЧЕНИЕ РАБОЧЕГО ДНЯ</p>
-      </div>
-      <div>
-        <form id="demoForm" novalidate>
-          <div class="f-row"><label for="fName">Имя *</label><input id="fName" type="text" placeholder="Как к вам обращаться" autocomplete="name"></div>
-          <div class="f-row"><label for="fCompany">Компания *</label><input id="fCompany" type="text" placeholder="Название компании или производства" autocomplete="organization"></div>
-          <div class="f-row"><label for="fRole">Формат интереса</label><select id="fRole"><option selected>Партнёрство / доля в прибыли</option><option>Инвестиция в партию 20 шт.</option><option>Пилот на своём производстве</option><option>Дистрибуция в регионе</option></select></div>
-          <div class="f-row"><label for="fContact">Telegram / телефон *</label><input id="fContact" type="text" placeholder="@nickname или +7…" autocomplete="tel"></div>
-          <button class="btn btn-solid" type="submit" style="width:100%;justify-content:center">Назначить встречу →</button>
-        </form>
-        <div id="formOk">
-          <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="34" stroke-width="2.5"/><path d="M26 41l10 10 19-22" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <h3>Заявка принята</h3>
-          <p>Номер заявки <span id="okNum">ACU-0000</span>.<br>Свяжемся в течение рабочего дня и привезём демо-стенд.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 </main>
 
 <footer>
@@ -1317,21 +1268,6 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
   });
 });
 
-/* demo form */
-document.getElementById('demoForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  var ok=true;
-  ['fName','fCompany','fContact'].forEach(function(id){
-    var el=document.getElementById(id);
-    var bad=!el.value.trim();
-    el.classList.toggle('err',bad);
-    if(bad) ok=false;
-  });
-  if(!ok) return;
-  this.style.display='none';
-  document.getElementById('okNum').textContent='ACU-'+(1000+Math.floor(Math.random()*9000));
-  document.getElementById('formOk').classList.add('on');
-});
 })();
 </script>
 </body>
